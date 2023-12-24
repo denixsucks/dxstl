@@ -1,17 +1,31 @@
 #pragma once
 
-#include <math.h>
-#include <simd.h>
+#include "math.h"
+#include "simd.h"
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-template <typename T>
-struct vec2
+// enter vector 2 description ?
+template <class T>
+class vec2
 {
+public:
   // -------------------------------------------------------------------------
-  union {
-    struct {T x, T y};
-    T array [2];
-  }
+  T x, y;
+
+  // -------------------------------------------------------------------------
+  static const int size = 2; 
+  static const uint64 sizeOfElement = sizeof(T);
+  using type = T;
+
+  // -------------------------------------------------------------------------
+  vec2() :x(0), y(0) {}
+  vec2(T x, T y) : x(x), y(y) {}
+  vec2(T v) : x(v), y(v) {}
+  vec2(const vec2& v) : x(v.x), y(v.y) {}
+
+  // -------------------------------------------------------------------------
+  T& operator[] (int index) { return arr[index]; }
+	T  operator[] (int index) const { return arr[index]; }
 
   // -------------------------------------------------------------------------
   vec2 operator - () const { return {-x , -y}; }
@@ -20,34 +34,34 @@ struct vec2
   vec2 operator - (vec2 b) const { return {x - b.x, y - b.y}; }
   vec2 operator * (vec2 b) const { return {x * b.x, y * b.y}; }
   vec2 operator / (vec2 b) const { return {x / b.x, y * b.y}; }
+  vec2 operator = (vec2 b) const { return {x = b.x, y = b.y}; }
 
   vec2 operator + (T b) const { return {x + b, y + b}; }
   vec2 operator - (T b) const { return {x - b, y - b}; }
   vec2 operator * (T b) const { return {x * b, y * b}; }
   vec2 operator / (T b) const { return {x / b, y * b}; }
+  vec2 operator = (T b) const { return {x = b, y = b}; }
+
+  vec2 operator += (vec2 b) const { return {x += b.x, y += b.y}; }
+  vec2 operator -= (vec2 b) const { return {x -= b.x, y -= b.y}; }
+  vec2 operator *= (vec2 b) const { return {x *= b.x, y *= b.y}; }
+  vec2 operator /= (vec2 b) const { return {x /= b.x, y /= b.y}; }
+  vec2 operator == (vec2 b) const { return (x == b.x && y == b.y) ? true : false; }
 
   // -------------------------------------------------------------------------
-};
+  static __constexpr vec2 zero()  {  return {T(0),  T(0)};  }
+  static __constexpr vec2 one()   {  return {T(1),  T(1)};  }
+  static __constexpr vec2 up()    {  return {T(0),  T(1)};  }
+  static __constexpr vec2 down()  {  return {T(0),  T(-1)}; }
+  static __constexpr vec2 right() {  return {T(1),  T(0)};  }
+  static __constexpr vec2 left()  {  return {T(-1), T(0)};  }
 
-template <typename T>
-struct vec3
-{
-  union {
-    struct {T x, T y, T z};
-    T array [3];
+  // -------------------------------------------------------------------------
+  const vec2 lerp(const vec2& a, const vec2& b, float t)
+  {
+    vec2 rv;
+    rv.x = math::lerp(a.x, b.y, t);
+    rv.y = math::lerp(a.x b.y, t);
+    return rv;
   }
-
-  // -------------------------------------------------------------------------
-
-};
-
-template <typename T>
-struct vec4
-{
-  union {
-    struct {T x, T y, T z ,T w};
-    T array [4];
-  }
-
-  // -------------------------------------------------------------------------
 };

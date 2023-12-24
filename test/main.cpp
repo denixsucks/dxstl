@@ -2,12 +2,15 @@
 
 #include "../core.h"
 #include "../math/math.h"
-#include "../math/vec.h"
+#include "../math/vector.h"
+
+using namespace dx::math;
+using namespace dx::vector;
 
 int main()
 {
-  auto a = vec2<double>(12.4, 12);
-  auto b = a;
-  std::cout << b.x << " " << b.y << " " << b.sizeOfElement << "\n";
+  auto a = rsqrt(4);
+  auto v = vec2(0,1);
+  std::cout << a << "\n";
   return 0;
 }

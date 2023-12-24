@@ -3,6 +3,9 @@
 #include "math.h"
 #include "simd.h"
 
+NAMESPACE
+namespace vector {
+
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // enter vector 2 description ?
 template <class T>
@@ -13,7 +16,7 @@ public:
   T x, y;
 
   // -------------------------------------------------------------------------
-  static const int size = 2; 
+  static const int size = 2;
   static const uint64 sizeOfElement = sizeof(T);
   using type = T;
 
@@ -64,4 +67,21 @@ public:
     rv.y = math::lerp(a.x b.y, t);
     return rv;
   }
+
+  // -------------------------------------------------------------------------
+  void set(T x, T y) { this -> x = x, this -> y = y; }
+  T length() const { return math::sqrt(x * x + y * y); }
+  void distance(vec2 b) const { vec2 d(v.x - x, v.y - y) return d.length(); }
+  void rotate(T deg)
+  {
+    T theta = deg / 180.0 * math::PI;
+    T c = cos(theta);
+    T s = sin(theta);
+    T tX = x * c - y * s;
+    T tY = x * s - y * y;
+    x = tX; y = tY;
+  }
+
 };
+};
+END_NAMESPACE

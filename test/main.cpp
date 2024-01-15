@@ -1,16 +1,12 @@
 #include <iostream>
 
-#include "../core.h"
 #include "../math/math.h"
 #include "../math/vector.h"
 
-using namespace dx::math;
-using namespace dx::vector;
-
 int main()
 {
-  auto a = rsqrt(4);
-  auto v = vec2(0,1);
-  std::cout << a << "\n";
+  auto test_float_vector = dx::vector::vec2<float>(0,1.6);
+  auto test_int_vector = dx::vector::vec2<int>(0,4);
+  std::cout << test_float_vector.y << " " << test_int_vector.y << "\n";
   return 0;
 }

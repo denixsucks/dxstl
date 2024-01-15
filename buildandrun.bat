@@ -7,4 +7,6 @@ if errorlevel 1 pause
 cd Debug
 cls
 dxstl.exe
+cd ..
+cd ..
 pause

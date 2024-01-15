@@ -14,10 +14,11 @@ class vec2
 public:
   // -------------------------------------------------------------------------
   T x, y;
+	T arr[2] {x, y};
 
   // -------------------------------------------------------------------------
   static const int size = 2;
-  static const uint64 sizeOfElement = sizeof(T);
+  static const u64 sizeOfElement = sizeof(T);
   using type = T;
 
   // -------------------------------------------------------------------------
@@ -64,14 +65,14 @@ public:
   {
     vec2 rv;
     rv.x = math::lerp(a.x, b.y, t);
-    rv.y = math::lerp(a.x b.y, t);
+    rv.y = math::lerp(a.x, b.y, t);
     return rv;
   }
 
   // -------------------------------------------------------------------------
   void set(T x, T y) { this -> x = x, this -> y = y; }
-  T length() const { return math::sqrt(x * x + y * y); }
-  void distance(vec2 b) const { vec2 d(v.x - x, v.y - y) return d.length(); }
+  T length() const { return sqrt(x * x + y * y); }
+  void distance(vec2 v) const { vec2 d(v.x - x, v.y - y); return d.length(); }
   void rotate(T deg)
   {
     T theta = deg / 180.0 * math::PI;

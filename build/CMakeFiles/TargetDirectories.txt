@@ -1,3 +1,0 @@
-C:/Projects/Personal/dxstl/build/CMakeFiles/dxstl.dir
-C:/Projects/Personal/dxstl/build/CMakeFiles/ALL_BUILD.dir
-C:/Projects/Personal/dxstl/build/CMakeFiles/ZERO_CHECK.dir

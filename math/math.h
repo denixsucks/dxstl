@@ -14,10 +14,10 @@ __constexpr float EPSILON = 0.0001f;
 
 // ---------------------------------------------------------------------------
 // https://en.wikipedia.org/wiki/Fast_inverse_square_root
-float rsqrt(float number)
+template <typename T> __forceinline T rsqrt(T number)
 {
   long i;
-  float x2, y;
+  T x2, y;
   const float threehalfs = 1.5F;
 
   x2 = number * 0.5F;
@@ -30,6 +30,7 @@ float rsqrt(float number)
 
   return y;
 }
+
 
 // ---------------------------------------------------------------------------
 template <typename T, typename I> __forceinline T lerp(T x, T y, I t)
@@ -58,9 +59,9 @@ template <typename T> __forceinline int floor (T x)
 // ---------------------------------------------------------------------------
 template <typename T> __forceinline bool isNan(T x)
 {
-  uint32 v = bitCast<uint32>(x);
-	uint32 exp = (v >> 23) & 0xFF;
-	uint32 f = v & 0x7FFFFF;
+  u32 v = bitCast<u32>(x);
+	u32 exp = (v >> 23) & 0xFF;
+	u32 f = v & 0x7FFFFF;
 	return (exp == 0xFF) & (f != 0);
 }
 
